@@ -7,12 +7,12 @@ Usage
 =====
 
 ```
-curl -O https://raw.github.com/fstrozzi/scala-toolbox/master/scripts/stair
+curl -O https://raw.github.com/fstrozzi/scala-toolbox/master/scripts/stbx
 
-chmod +x stair
+chmod +x stbx
 ```
 
-Put STAIR in your path.
+Put STBX in your path.
 
 Enjoy.
 

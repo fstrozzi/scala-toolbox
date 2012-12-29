@@ -5,7 +5,7 @@
 # Simple tool to initialize a new Scala project
 #
 #
-echo -e "\nSTAIR: Simple Scala project initializer.\n"
+echo -e "\nSTBX: Simple Scala Toolbox for project initialization.\n"
 
 command -v sbt >/dev/null 2>&1 || { echo >&2 "SBT not installed or not in PATH.  Please install SBT"; exit 1; }
 command -v git >/dev/null 2>&1 || { echo >&2 "GIT not installed or not in PATH. Please install GIT"; exit 1; }
