@@ -1,0 +1,47 @@
+#! /bin/bash
+
+# Copyright(c) 2012 Francesco Strozzi <francesco.strozzi@gmail.com>
+#
+# Simple tool to initialize a new Scala project
+#
+#
+echo -e "\nSTAIR: Simple Scala project initializer.\n"
+
+command -v sbt >/dev/null 2>&1 || { echo >&2 "SBT not installed or not in PATH.  Please install SBT"; exit 1; }
+command -v git >/dev/null 2>&1 || { echo >&2 "GIT not installed or not in PATH. Please install GIT"; exit 1; }
+command -v java >/dev/null 2>&1 || { echo >&2 "JAVA not installed or not in PATH. Please install JAVA"; exit 1; }
+
+if [ -z "$1" ]; then
+	echo "Please supply a project name"
+	exit
+fi
+if [ -d "$1" ]; then
+	echo "Directory $1 already exists!"
+	exit
+fi
+name=$1
+mkdir $name
+cd $name
+
+echo "Creating the new project $name..."
+mkdir -p src/{main,test}/{scala,java,resources}
+
+echo -e "name := \"$name\"
+
+version := \"0.1\"
+
+//libraryDependencies ++= Seq(
+//	groupID % artifactID % revision,
+//	groupID % otherID % otherRevision
+//)
+
+//resolvers += \"Sonatype OSS Snapshots\" at \"https://oss.sonatype.org/content/repositories/snapshots\"
+				
+" > build.sbt
+echo "Done."
+
+git init
+echo "target/" >> .gitignore
+
+echo "Running SBT on the project..."
+sbt
