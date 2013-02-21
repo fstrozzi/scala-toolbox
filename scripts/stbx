@@ -27,11 +27,14 @@ echo "Creating the new project $name..."
 mkdir -p src/{main,test}/{scala,java,resources}
 mkdir -p project
 
-echo -e "name := \"$name\"
+echo -e "
 
 import AssemblyKeys._ 
 
 assemblySettings
+
+name := \"$name\"
+
 
 version := \"1.0\"
 
@@ -47,7 +50,7 @@ echo "Done."
 
 echo -e "
 
-addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.8.6")
+addSbtPlugin(\"com.eed3si9n\" % \"sbt-assembly\" % \"0.8.6\")
 
 " > project/plugins.sbt
 
