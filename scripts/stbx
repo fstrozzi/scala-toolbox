@@ -25,10 +25,15 @@ cd $name
 
 echo "Creating the new project $name..."
 mkdir -p src/{main,test}/{scala,java,resources}
+mkdir -p project
 
 echo -e "name := \"$name\"
 
-version := \"0.1\"
+import AssemblyKeys._ 
+
+assemblySettings
+
+version := \"1.0\"
 
 //libraryDependencies ++= Seq(
 //	groupID % artifactID % revision,
@@ -39,6 +44,12 @@ version := \"0.1\"
 				
 " > build.sbt
 echo "Done."
+
+echo -e "
+
+addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.8.6")
+
+" > project/plugins.sbt
 
 git init
 echo "target/" >> .gitignore
