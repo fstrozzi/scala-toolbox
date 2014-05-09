@@ -11,10 +11,18 @@ command -v sbt >/dev/null 2>&1 || { echo >&2 "SBT not installed or not in PATH. 
 command -v git >/dev/null 2>&1 || { echo >&2 "GIT not installed or not in PATH. Please install GIT"; exit 1; }
 command -v java >/dev/null 2>&1 || { echo >&2 "JAVA not installed or not in PATH. Please install JAVA"; exit 1; }
 
+scalaVersion=""
+
 if [ -z "$1" ]; then
-	echo "Please supply a project name"
+	echo "Please supply a project name and (optionally) the Scala version"
+	echo "e.g. $0 MyProject 2.10.3"
 	exit
 fi
+
+if [ -z "$2" ]; then
+	scalaVersion="2.10.4"
+fi
+
 if [ -d "$1" ]; then
 	echo "Directory $1 already exists!"
 	exit
@@ -29,9 +37,7 @@ mkdir -p project
 mkdir -p lib
 echo -e "
 
-import AssemblyKeys._ 
-
-assemblySettings
+scalaVersion := \"$scalaVersion\"
 
 name := \"$name\"
 
