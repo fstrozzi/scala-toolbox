@@ -19,8 +19,10 @@ if [ -z "$1" ]; then
 	exit
 fi
 
-if [ -n "$2" ]; then
+if [ -z "$2" ]; then
 	scalaVersion="2.10.4"
+else
+	scalaVersion=$2
 fi
 
 if [ -d "$1" ]; then
